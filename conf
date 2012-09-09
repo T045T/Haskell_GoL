@@ -1,0 +1,9 @@
+20 # Field Width
+20 # Field Height
+
+# Coordinates of initially populated squares - a glider!
+12 8
+13 9
+11 10
+12 10
+13 10
