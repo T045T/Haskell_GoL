@@ -136,7 +136,7 @@ main = do
     conf <- loadConf "conf"
     let myField = buildFromConf conf
     input <- getContents
-    let r = map (advance (step myField)) ((lines input) `zip` [0..])
+    let r = map (advance myField) ((lines input) `zip` [0..])
     putStr (unlines r)
     where
         advance field (_, 0) = show field
