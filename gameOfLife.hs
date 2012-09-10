@@ -84,12 +84,8 @@ countSurrounding coords matrix = length (filter (== True) boolList)
                     
 willLive :: (Int, Int) -> [[Bool]] -> Bool
 willLive coords matrix = if (getValue coords matrix) == True
-                           then if 1 < s && s < 4
-                                  then True
-                                  else False
-                           else if s == 3
-                                  then True
-                                  else False
+                           then (1 < s && s < 4)
+                           else (s == 3)
     where
         s = countSurrounding coords matrix
 
