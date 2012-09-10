@@ -94,13 +94,13 @@ willLive coords matrix = if (getValue coords matrix) == True
         s = countSurrounding coords matrix
 
 setMatrixValue :: Bool -> (Int, Int) -> [[Bool]] -> [[Bool]]
-setMatrixValue value coords matrix = [ if (snd line) == (snd coords)
-                                         then [ if (snd item) == (fst coords)
-                                                  then value 
-                                                  else (fst item) 
-                                              | item <- (fst line) `zip` [0..]]
-                                         else (fst line) 
-                                     | line <- matrix `zip` [0..] ]
+setMatrixValue value coords matrix =
+	take (snd coords) matrix
+	++ [setRowValue value (fst coords) (matrix!!(snd coords))]
+	++ drop ((snd coords) + 1) matrix
+	where
+		setRowValue val x row =
+			take x row ++ (val : (drop (x+1) row))
 
 constructField :: Int -> Int -> Field
 constructField width height = Field width height $ take height $ repeat $ line
